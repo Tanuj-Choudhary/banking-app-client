@@ -2,10 +2,18 @@ import React from 'react';
 
 import './sendMoneyView.css';
 import { renderToast } from '../../utils/toast';
-import { renderOvalLoader } from '../../utils/loader';
+import { renderOvalLoader,renderZLoader } from '../../utils/loader';
 
 
-function SendMoneyView({ customers, senderID, onClick }) {
+function SendMoneyView({ customers, senderID, onClick,isloading }) {
+
+  const renderLoader = () => {
+    console.log(isloading);
+    if (isloading) {
+      return renderZLoader();
+    }
+  }
+
   const renderCustomers = () => {
     if (customers.length === 0) {
       return (
@@ -17,6 +25,7 @@ function SendMoneyView({ customers, senderID, onClick }) {
 
     return customers.map((customer) => {
       if (customer._id !== senderID) {
+       
         return (
           <div
             onClick={onClick}
@@ -43,8 +52,9 @@ function SendMoneyView({ customers, senderID, onClick }) {
   return (
     <div className="customers-page">
       {renderToast()}
+      {renderLoader()}
       <h1 className="customers__heading">Send money to</h1>
-      <div className="customers-list">{renderCustomers()}</div>
+      <div className={`customers-list ${isloading ? 'loading':'not-loading'}`}>{renderCustomers()}</div>
     </div>
   );
 }

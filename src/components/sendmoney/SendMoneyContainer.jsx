@@ -9,6 +9,8 @@ import { useHistory } from 'react-router-dom';
 function SendMoneyContainer(props) {
   const history = useHistory();
   const [customers, setcustomers] = useState([]);
+  const [isloading, setisloading] = useState(false);
+  
   const query = queryString.parse(props.location.search);
   const senderID = props.match.params.id;
 
@@ -29,14 +31,23 @@ function SendMoneyContainer(props) {
   const onClick = async (e) => {
     e.preventDefault();
 
+    if (isloading)
+      return;
+
     const recieverID = e.target.closest('.customer').id;
     const data = { money: parseInt(query.amount) };
 
     try {
-      await bankingAPI.post(`/users/${senderID}/sendmoney/${recieverID}`, data);
+      setisloading(true);
+      const res = await bankingAPI.post(`/users/${senderID}/sendmoney/${recieverID}`, data);
+      if (res) {
+        setisloading(false);
+      }
+
       alert('Money succesfully sent');
       history.push('/customers');
     } catch (err) {
+      setisloading(false);
       if (err.response) {
         renderFailToast(err.response.data.message);
       } else {
@@ -50,6 +61,7 @@ function SendMoneyContainer(props) {
       customers={customers}
       senderID={senderID}
       onClick={onClick}
+      isloading={isloading}
     />
   );
 }
