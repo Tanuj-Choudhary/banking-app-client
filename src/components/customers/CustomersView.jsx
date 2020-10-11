@@ -3,9 +3,18 @@ import { Link } from 'react-router-dom';
 
 import './customersView.css';
 import { renderToast } from '../../utils/toast';
+import { renderOvalLoader } from '../../utils/loader';
 
 function CustomersView({ customers }) {
   const renderCustomers = () => {
+    if (customers.length === 0) {
+      return (
+        <div className="loader__center">
+         {renderOvalLoader()}
+        </div>
+      )
+    }
+
     return customers.map((customer) => (
       <Link
         className="customer__link"

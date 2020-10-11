@@ -2,9 +2,19 @@ import React from 'react';
 
 import './sendMoneyView.css';
 import { renderToast } from '../../utils/toast';
+import { renderOvalLoader } from '../../utils/loader';
+
 
 function SendMoneyView({ customers, senderID, onClick }) {
   const renderCustomers = () => {
+    if (customers.length === 0) {
+      return (
+        <div className="loader__center">
+         {renderOvalLoader()}
+        </div>
+      )
+    }
+
     return customers.map((customer) => {
       if (customer._id !== senderID) {
         return (
