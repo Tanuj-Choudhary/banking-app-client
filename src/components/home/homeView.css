@@ -1,0 +1,17 @@
+.home-page {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.customers-link {
+  background-color: rgb(14, 112, 237);
+  padding: 15px 25px;
+  font-size: 30px;
+  color: #fff;
+  text-transform: capitalize;
+  text-decoration: none;
+  transition: 0.3s all;
+  cursor: pointer;
+}

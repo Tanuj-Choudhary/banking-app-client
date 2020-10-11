@@ -1,0 +1,64 @@
+.single__customer__page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.single__customer__heading,
+.single__customer__name,
+.single__customer__balance,
+.form__send-money__input {
+  margin-bottom: 1rem;
+}
+
+.single__customer__heading {
+  font-size: 40px;
+}
+
+.single__customer__name {
+  font-size: 20px;
+}
+
+.single__customer__balance {
+  font-size: 20px;
+}
+
+.form__send-money {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+}
+
+.form__send-money__input {
+  background: #fff;
+  height: 2.27rem;
+  line-height: 1.5;
+  color: #495057;
+  outline: none;
+  border: 0px solid transparent;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-send-money {
+  padding: 16px 35px;
+  background-color: rgb(14, 112, 237);
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 12px 0px;
+  transition-property: background-color, color, border-color, opacity,
+    box-shadow;
+  transition-timing-function: ease-out;
+  transition-duration: 0.1s;
+}
+
+.btn-send-money:hover {
+  background-color: rgb(50, 134, 240);
+}
